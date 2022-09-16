@@ -3,7 +3,7 @@ import requests
 
 
 def validate_wallet(wallet):
-    if not re.match('P\d{7,12}$', wallet):
+    if not re.match("^[Pp]{1}[0-9]{7,15}|.+@.+\..+$"), wallet):
         raise ValueError('Wrong wallet format!')
 
 
@@ -119,11 +119,8 @@ class PayeerAPI:
             data['protect'] = protect
             if protect_period: data['protectPeriod'] = protect_period
             if protect_code: data['protectCode'] = protect_code
-        resp = self.request(**data)
-        if resp.get('historyId', 0) > 0:
-            return True
-        else:
-            return False
+        
+        return self.request(**data)
 
     def check_output(self, ps, ps_account, sum_in, cur_in='USD', cur_out='USD'):
         """

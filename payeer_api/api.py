@@ -3,7 +3,7 @@ import requests
 
 
 def validate_wallet(wallet):
-    if not re.match("^[Pp]{1}[0-9]{7,15}|.+@.+\..+$"), wallet):
+    if not re.match("^[Pp]{1}[0-9]{7,15}|.+@.+\..+$", wallet):
         raise ValueError('Wrong wallet format!')
 
 
